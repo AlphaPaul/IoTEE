@@ -1,0 +1,12 @@
+<#if licenseFirst??>
+${licenseFirst}
+</#if>
+${licensePrefix}
+${licensePrefix}Copyright Paul Fetet 2018
+${licensePrefix}These demo applications are not to be used
+${licensePrefix}in production. I Cannot be liable of anything
+${licensePrefix}and will never guarantee this code works,
+${licensePrefix}or serves a particular purpose
+<#if licenseLast??>
+${licenseLast}
+</#if>

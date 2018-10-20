@@ -6,7 +6,9 @@
 package com.e2dev.presentation;
 
 import com.e2dev.boundary.BeanDataFacade;
+import com.e2dev.boundary.LedStatusEntityFacade;
 import com.e2dev.entities.BeanData;
+import com.e2dev.entities.LedStatusEntity;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -22,15 +24,31 @@ public class MessageView {
 
     @EJB
     private BeanDataFacade beanDataFacade;
+    @EJB
+    private LedStatusEntityFacade ledfacade;
 
     
     // Creates a new field
     private BeanData message;
-
+    private LedStatusEntity ledStatus;
+    private String test = "test";
+    
 
     // Calls getMessage to retrieve the message
     public BeanData getMessage() {
        return message;
+    }
+
+    public LedStatusEntity getLedStatus() {
+        return ledStatus;
+    }
+    
+    public String getTest() {
+        return test;
+    }
+    
+    public void setTest(String str){
+        test = str;
     }
 
     // Returns the total number of messages
@@ -60,6 +78,7 @@ public class MessageView {
     /** Creates a new instance of MessageView */
     public MessageView() {
        this.message = new BeanData();
+       this.ledStatus = new LedStatusEntity();
     }
     
 }
