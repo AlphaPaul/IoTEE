@@ -9,11 +9,17 @@
     <h:body>
         <f:view>
             <h:form>
-                <h:outputLabel value="Message:"/><h:inputText value="#{MessageView.message.message}"/>
                 <br/>
-                <h:commandButton action="#{MessageView.postMessage}" value="Post Message"/>
+                <h:outputText value="#{MessageView.ledStatus.jniStatus}"/>
                 <br/>
-                <h:outputText value="Should display test || name:"/>
+                <br/>
+                <br/>
+                <h:commandButton value="LoadJNI Library" action="#{MessageView.ledStatus.loadjniLibrary}"/>
+                <br/>
+                <br/>
+                <h:commandButton value="Update the JNI Status" action="#{MessageView.ledStatus.updateJNIStatus}"/>
+                <br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                <h:outputText value="Canary: Should display test || name: if all is OK"/>
                 <br/>
                 <h:outputText value="#{MessageView.test} || #{MessageView.ledStatus.className}"/>
             </h:form>

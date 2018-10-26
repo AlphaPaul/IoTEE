@@ -1,0 +1,6 @@
+#!/bin/bash
+
+echo copying generated .so to domain libs and Java JNI libs
+
+cp dist/libIoTEEJNI.so ~/glassfish5/glassfish/domains/domain1/lib/
+cp dist/libIoTEEJNI.so /usr/lib/x86_64-linux-gnu/jni/

@@ -8,6 +8,7 @@
  */
 package com.e2dev.entities;
 
+import com.e2dev.jni.JNILinker;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,15 +24,57 @@ import javax.validation.constraints.NotNull;
 public class LedStatusEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
+    // JNI Link
+    private transient JNILinker jniLink;
+    
+    // Variables accessed by the webpage
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String className;
-
+    private String jniStatus;
+    
+    //
+    // Constructor
+    //
     public LedStatusEntity(){
+        jniLink = JNILinker.getInstance();
         className = new String("LedStatusEntity");
+        jniStatus = new String("Status Not Updated");
+    }
+    
+    // 
+    // Public Methods
+    //
+    public void loadjniLibrary(){
+        jniLink.loadLibrary();
+    }
+    
+    
+    public void updateJNIStatus(){
+        
+        jniStatus = "Last received Status: " + jniLink.geJNIStatus();
+        
     }
 
+    //
+    // Private Methods
+    //
+    
+    //
+    // Getters and Setters
+    //
+
+    public String getJniStatus() {
+        return jniStatus;
+    }
+
+    public void setJniStatus(String jniStatus) {
+        this.jniStatus = jniStatus;
+    }
+    
+    
     public String getClassName() {
         return className;
     }
@@ -47,6 +90,10 @@ public class LedStatusEntity implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    
+    //
+    // Overrides
+    //
     
     @Override
     public int hashCode() {
