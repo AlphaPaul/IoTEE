@@ -54,6 +54,7 @@ int main(int argc, char** argv) {
             cout << "Connecting" << endl;
             int ret = usbDemo->connect();
             cout << "Connected with return code (0 is success): " << ret << endl;
+            cout << "Error Meaning: " << libusb_error_name(ret) << endl;
             
         }
         else if (input == DISCONNECT_COMMAND){

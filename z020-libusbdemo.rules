@@ -1,0 +1,4 @@
+#Rule to be put in /etc/udev/rules.d
+#allows to give r/w access from any user to the plugged device of PID and VID attributes. 
+
+ACTION=="add", ATTRS{idVendor}=="04d8", ATTRS{idProduct}=="0204",GROUP="plugdev" MODE:="666"

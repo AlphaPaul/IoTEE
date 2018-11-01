@@ -3,13 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/paul/Code/IoTEE/IoTEE/src/java/com/e2dev/boundary/BeanDataFacade.java</file>
-            <file>file:/home/paul/Code/IoTEE/IoTEE/src/java/com/e2dev/boundary/AbstractFacade.java</file>
             <file>file:/home/paul/Code/IoTEE/IoTEE/web/index.xhtml</file>
             <file>file:/home/paul/Code/IoTEE/IoTEE/src/java/com/e2dev/entities/LedStatusEntity.java</file>
             <file>file:/home/paul/Code/IoTEE/IoTEE/src/java/com/e2dev/entities/BeanData.java</file>
             <file>file:/home/paul/Code/IoTEE/IoTEE/src/java/com/e2dev/presentation/MessageView.java</file>
-            <file>file:/home/paul/Code/IoTEE/IoTEE/src/java/com/e2dev/boundary/LedStatusEntityFacade.java</file>
             <file>file:/home/paul/Code/IoTEE/IoTEE/src/java/com/e2dev/jni/JNILinker.java</file>
         </group>
     </open-files>
