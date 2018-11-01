@@ -23,6 +23,16 @@
 #define DEMO_PRODUCT_ID     0x0204
 
 
+// OUT and IN directions are always taken from the host in the USB terminology
+#define DEMO_OUT_ENDPOINT_NUMBER    0x01
+#define DEMO_OUT_ENDPOINT_LENGTH    64
+#define DEMO_IN_ENDPOINT_NUMBER     0x81
+#define DEMO_IN_ENDPOINT_LENGTH     64
+#define DEMO_TIMEOUT_MS             1000
+#define DEMO_SET_LED_COMMAND        0x83
+#define DEMO_GET_SWITCH_STATUS_COMMAND  0x82
+
+
 class LibUSBDemoControl {
 public:
     LibUSBDemoControl();
@@ -40,6 +50,8 @@ private:
     libusb_device_handle * deviceHandle;
     // keeping devList because it needs to be freed on exit
     libusb_device ** devList;
+    
+    unsigned char ledData[64];
 
 };
 

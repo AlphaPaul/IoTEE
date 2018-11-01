@@ -38,6 +38,7 @@ int main(int argc, char** argv) {
 
     int input;
     LibUSBDemoControl *usbDemo = new LibUSBDemoControl();
+    bool disconnected = true;
     
     while(1){
         cout << "Input the Command:\nTurn OFF: 0--7; Turn ON 10--17\n Connect 20; Disconnect 21\nExit with 42" << endl;
@@ -46,21 +47,39 @@ int main(int argc, char** argv) {
         if(input >= LED_OFF_PREFIX && input < MAX_LED_ID + LED_OFF_PREFIX){
             // Turn off
             cout << "Turning led off: " << input - LED_OFF_PREFIX << endl;
+            int ret = usbDemo->turnLedOff(input - LED_OFF_PREFIX);
+            cout << "CCommand sent with return code (0 is success): " << ret << endl;
+            cout << "Error Meaning: " << libusb_error_name(ret) << endl;
         }
         else if(input >= LED_ON_PREFIX && input < MAX_LED_ID + LED_ON_PREFIX){
             cout << "Turning led on: " << input - LED_ON_PREFIX << endl;
+            int ret = usbDemo->turnLedOn(input - LED_ON_PREFIX);
+            cout << "CCommand sent with return code (0 is success): " << ret << endl;
+            cout << "Error Meaning: " << libusb_error_name(ret) << endl;
         }
         else if(input == CONNECT_COMMAND){
             cout << "Connecting" << endl;
             int ret = usbDemo->connect();
             cout << "Connected with return code (0 is success): " << ret << endl;
             cout << "Error Meaning: " << libusb_error_name(ret) << endl;
+            if(ret == 0){
+                disconnected = false;
+            }
             
         }
         else if (input == DISCONNECT_COMMAND){
             cout << "Disconnecting" << endl;
+            int ret = usbDemo->disconnect();
+            cout << "Connected with return code (0 is success): " << ret << endl;
+            cout << "Error Meaning: " << libusb_error_name(ret) << endl;
+            if(ret == 0){
+                disconnected = true;
+            }
         }
         else if (input == EXIT_COMMAND){
+            if (!disconnected){
+                usbDemo->disconnect();
+            }
             cout << "Good Bye!" << endl;
             break;
         }

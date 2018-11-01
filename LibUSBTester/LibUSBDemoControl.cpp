@@ -21,6 +21,7 @@
 
 LibUSBDemoControl::LibUSBDemoControl() {
     demoDevice = NULL;
+    ledData[1] = 0;
 }
 
 LibUSBDemoControl::LibUSBDemoControl(const LibUSBDemoControl& orig) {
@@ -80,15 +81,34 @@ int LibUSBDemoControl::connect(){
 }
 
 int LibUSBDemoControl::disconnect(){
+    
+    libusb_close(deviceHandle);
+    libusb_free_device_list(devList, 0);
+    
+    
     return 0;
 }
 
 int LibUSBDemoControl::turnLedOn(int ledIndex){
-    return 0;
+    ledData[0] = DEMO_SET_LED_COMMAND;
+
+    ledData[1] |= 0x01 << ledIndex;
+
+    std::cout << "LedData: " << (unsigned int)ledData[0] << ":" << (unsigned int)ledData[1] << " || " << (0x01 << ledIndex) << " || " << ledIndex << std::endl;
+    
+    int ret = libusb_bulk_transfer(deviceHandle, DEMO_OUT_ENDPOINT_NUMBER, ledData,DEMO_OUT_ENDPOINT_LENGTH, NULL, DEMO_TIMEOUT_MS);
+    
+    return ret;
 }
 
 int LibUSBDemoControl::turnLedOff(int ledIndex){
-    return 0;
+    ledData[0] = DEMO_SET_LED_COMMAND; 
+    ledData[1] &= ~(0x01 << ledIndex);
+    std::cout << "LedData: " << (unsigned int)ledData[0] << ":" << (unsigned int)ledData[1] << std::endl;
+    
+    int ret = libusb_bulk_transfer(deviceHandle, DEMO_OUT_ENDPOINT_NUMBER, ledData,DEMO_OUT_ENDPOINT_LENGTH, NULL, DEMO_TIMEOUT_MS);
+    
+    return ret;
 }
 
 //
