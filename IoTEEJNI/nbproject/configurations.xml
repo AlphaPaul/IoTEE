@@ -4,6 +4,7 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>LibUSBDemoControl.h</itemPath>
       <itemPath>com_e2dev_jni_JNILinker.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -13,7 +14,8 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <itemPath>JNIEntry.c</itemPath>
+      <itemPath>JNIEntry.cpp</itemPath>
+      <itemPath>LibUSBDemoControl.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -43,11 +45,27 @@
           </incDir>
           <commandLine>-shared</commandLine>
         </cTool>
+        <ccTool>
+          <incDir>
+            <pElem>/usr/lib/jvm/java-8-openjdk-amd64/include</pElem>
+            <pElem>/usr/lib/jvm/java-8-openjdk-amd64/include/linux</pElem>
+          </incDir>
+        </ccTool>
         <linkerTool>
           <output>dist/libIoTEEJNI.so</output>
+          <linkerAddLib>
+            <pElem>.</pElem>
+          </linkerAddLib>
+          <linkerLibItems>
+            <linkerLibFileItem>libusb-1.0.so</linkerLibFileItem>
+          </linkerLibItems>
         </linkerTool>
       </compileType>
-      <item path="JNIEntry.c" ex="false" tool="0" flavor2="0">
+      <item path="JNIEntry.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="LibUSBDemoControl.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="LibUSBDemoControl.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="com_e2dev_jni_JNILinker.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -72,7 +90,11 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
-      <item path="JNIEntry.c" ex="false" tool="0" flavor2="0">
+      <item path="JNIEntry.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="LibUSBDemoControl.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="LibUSBDemoControl.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="com_e2dev_jni_JNILinker.h" ex="false" tool="3" flavor2="0">
       </item>

@@ -4,3 +4,6 @@ echo copying generated .so to domain libs and Java JNI libs
 
 cp dist/libIoTEEJNI.so ~/glassfish5/glassfish/domains/domain1/lib/
 cp dist/libIoTEEJNI.so /usr/lib/x86_64-linux-gnu/jni/
+
+cp libusb-1.0.so ~/glassfish5/glassfish/domains/domain1/lib/
+cp libusb-1.0.so /usr/lib/x86_64-linux-gnu/jni/

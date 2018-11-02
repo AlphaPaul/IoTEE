@@ -35,7 +35,8 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/JNIEntry.o
+	${OBJECTDIR}/JNIEntry.o \
+	${OBJECTDIR}/LibUSBDemoControl.o
 
 
 # C Compiler Flags
@@ -52,20 +53,27 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=
+LDLIBSOPTIONS=-L. libusb-1.0.so
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
 	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk dist/libIoTEEJNI.so
 
+dist/libIoTEEJNI.so: libusb-1.0.so
+
 dist/libIoTEEJNI.so: ${OBJECTFILES}
 	${MKDIR} -p dist
-	${LINK.c} -o dist/libIoTEEJNI.so ${OBJECTFILES} ${LDLIBSOPTIONS} -shared -fPIC
+	${LINK.cc} -o dist/libIoTEEJNI.so ${OBJECTFILES} ${LDLIBSOPTIONS} -shared -fPIC
 
-${OBJECTDIR}/JNIEntry.o: JNIEntry.c
+${OBJECTDIR}/JNIEntry.o: JNIEntry.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -g -I/usr/lib/jvm/java-8-openjdk-amd64/include -I/usr/lib/jvm/java-8-openjdk-amd64/include/linux -fPIC  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/JNIEntry.o JNIEntry.c
+	$(COMPILE.cc) -g -I/usr/lib/jvm/java-8-openjdk-amd64/include -I/usr/lib/jvm/java-8-openjdk-amd64/include/linux -fPIC  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/JNIEntry.o JNIEntry.cpp
+
+${OBJECTDIR}/LibUSBDemoControl.o: LibUSBDemoControl.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/lib/jvm/java-8-openjdk-amd64/include -I/usr/lib/jvm/java-8-openjdk-amd64/include/linux -fPIC  -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/LibUSBDemoControl.o LibUSBDemoControl.cpp
 
 # Subprojects
 .build-subprojects:
@@ -73,6 +81,8 @@ ${OBJECTDIR}/JNIEntry.o: JNIEntry.c
 # Clean Targets
 .clean-conf: ${CLEAN_SUBPROJECTS}
 	${RM} -r ${CND_BUILDDIR}/${CND_CONF}
+	${RM} -r dist/libusb-1.0.so
+	${RM} dist/libIoTEEJNI.so
 
 # Subprojects
 .clean-subprojects:

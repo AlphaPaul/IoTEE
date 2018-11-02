@@ -4,24 +4,44 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Led Controller</title>
     </h:head>
     <h:body>
         <f:view>
             <h:form>
                 <br/>
                 <h:outputText value="#{MessageView.ledStatus.jniStatus}"/>
-                <br/>
-                <br/>
-                <br/>
+                <br/><br/><br/>
+
                 <h:commandButton value="LoadJNI Library" action="#{MessageView.ledStatus.loadjniLibrary}"/>
-                <br/>
-                <br/>
+                <br/><br/>
+                
                 <h:commandButton value="Update the JNI Status" action="#{MessageView.ledStatus.updateJNIStatus}"/>
-                <br/><br/><br/><br/><br/><br/><br/><br/><br/>
-                <h:outputText value="Canary: Should display test || name: if all is OK"/>
+                
+                <br/><br/><br/><br/>
+                <h:outputText value="Device Admin:"/>
+                <h:commandButton value="Connect to Device" action="#{MessageView.ledStatus.connect()}"/>
+                <h:commandButton value="Disconnect From device" action="#{MessageView.ledStatus.disconnect()}"/>
+                
+                <br/><br/><br/><br/>
+                <h:outputText value="Led Control:"/>
+                <br/><br/>
+                <h:commandButton value="OFF :: 1" action="#{MessageView.ledStatus.setLedOff(0)}"/>
+                <h:commandButton value="OFF :: 2" action="#{MessageView.ledStatus.setLedOff(1)}"/>
+                <h:commandButton value="OFF :: 3" action="#{MessageView.ledStatus.setLedOff(2)}"/>
+                <h:commandButton value="OFF :: 4" action="#{MessageView.ledStatus.setLedOff(3)}"/>
+                <h:commandButton value="OFF :: 5" action="#{MessageView.ledStatus.setLedOff(4)}"/>
+                <h:commandButton value="OFF :: 6" action="#{MessageView.ledStatus.setLedOff(5)}"/>
+                <h:commandButton value="OFF :: 7" action="#{MessageView.ledStatus.setLedOff(6)}"/>
                 <br/>
-                <h:outputText value="#{MessageView.test} || #{MessageView.ledStatus.className}"/>
+                <h:commandButton value="ON :: 1" action="#{MessageView.ledStatus.setLedOn(0)}"/>
+                <h:commandButton value="ON :: 2" action="#{MessageView.ledStatus.setLedOn(1)}"/>
+                <h:commandButton value="ON :: 3" action="#{MessageView.ledStatus.setLedOn(2)}"/>
+                <h:commandButton value="ON :: 4" action="#{MessageView.ledStatus.setLedOn(3)}"/>
+                <h:commandButton value="ON :: 5" action="#{MessageView.ledStatus.setLedOn(4)}"/>
+                <h:commandButton value="ON :: 6" action="#{MessageView.ledStatus.setLedOn(5)}"/>
+                <h:commandButton value="ON :: 7" action="#{MessageView.ledStatus.setLedOn(6)}"/>
+                
             </h:form>
         </f:view>
     </h:body>

@@ -25,6 +25,14 @@ public class LedStatusEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
     
+    private static final int LED_OFF_PREFIX = 0;
+    private static final int LED_ON_PREFIX = 10;
+    private static final int MAX_LED_ID = 8;
+    private static final int CONNECT_COMMAND = 20;
+    private static final int DISCONNECT_COMMAND = 21;
+    
+    
+    
     // JNI Link
     private transient JNILinker jniLink;
     
@@ -34,6 +42,8 @@ public class LedStatusEntity implements Serializable {
     private Long id;
     private String className;
     private String jniStatus;
+    
+    private static boolean isConnected = false;
     
     //
     // Constructor
@@ -57,6 +67,61 @@ public class LedStatusEntity implements Serializable {
         jniStatus = "Last received Status: " + jniLink.geJNIStatus();
         
     }
+    
+    public void connect(){
+        int res = 0;
+        if(isConnected == false){
+            res = jniLink.sendJNICommand("" + CONNECT_COMMAND);
+            jniStatus = "Last received Status after Connection: " + res;
+            if(res == 0){
+                isConnected = true;
+            }
+        }
+        else{
+            jniStatus = "Already Connected - Connect Function";
+        }
+    }
+    
+    public void disconnect(){
+        int res = 0;
+        if(isConnected == true){
+            isConnected = false;
+            res = jniLink.sendJNICommand("" + (DISCONNECT_COMMAND));
+            jniStatus = "Last received Status after Disconnection: " + res;
+        }
+        else{
+            jniStatus = "Already Disconnected - Disconnect Function";
+        }
+    }
+    
+    public void setLedOn(int ledIndex){
+        int res = 0;
+        
+        if(!isConnected){
+            jniStatus = "Please Connect before playing with the device - set led on function";
+        }
+        else{
+            res = jniLink.sendJNICommand("" + (ledIndex + LED_ON_PREFIX));
+            jniStatus = "Last received Status after turning LED ON: " + res+ " with command: " + (ledIndex + LED_ON_PREFIX);
+        }
+        
+        
+        
+    }
+    
+    public void setLedOff(int ledIndex){
+        int res = 0;
+        
+        if(!isConnected){
+            jniStatus = "Please Connect before playing with the device - set led off function";
+        }
+        else{
+            res = jniLink.sendJNICommand("" + (ledIndex + LED_OFF_PREFIX));
+            jniStatus = "Last received Status after turning LED OFF: " + res + " with command: " + (ledIndex + LED_OFF_PREFIX);
+        }
+    }
+    
+    
 
     //
     // Private Methods

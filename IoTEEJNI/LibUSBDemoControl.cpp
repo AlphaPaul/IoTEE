@@ -77,6 +77,7 @@ int LibUSBDemoControl::connect(){
         return res;
     }
     res = libusb_claim_interface(deviceHandle, 0);
+    
     return res;
 }
 

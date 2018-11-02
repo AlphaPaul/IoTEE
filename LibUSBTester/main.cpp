@@ -86,7 +86,6 @@ int main(int argc, char** argv) {
         else{
             cout << "invalid command: " << input << endl;
         }
-        
     }
     return 0;
 }
